@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RoomsTemplate from '../templates/RoomsTemplate';
-import { State } from '../reducers';
+import { State } from '../redux/reducers/RoomReducer';
 
-const Rooms: React.FunctionComponent = () => {
+const Rooms: React.FC = () => {
   const rooms = useSelector<State, State['rooms']>((state) => state.rooms);
   const dispatch = useDispatch();
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { routes } from '../routes/routes';
 import { Provider } from 'react-redux';
-import { store } from '../store';
+import { store } from '../redux/store';
 import DetailsPage from '../views/DetailsPage';
 import RegisterPage from '../views/RegisterPage';
 import Players from '../views/Players';

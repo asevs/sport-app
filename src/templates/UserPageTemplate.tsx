@@ -3,8 +3,8 @@ import * as React from 'react';
 interface RoomsTemplateProps {
   children: React.ReactNode;
 }
-const UserPageTemplate: React.FunctionComponent<RoomsTemplateProps> = ({
-  children,
-}) => <>{children}</>;
+const UserPageTemplate: React.FC<RoomsTemplateProps> = ({ children }) => (
+  <>{children}</>
+);
 
 export default UserPageTemplate;
