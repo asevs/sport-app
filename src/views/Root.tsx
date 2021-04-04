@@ -22,7 +22,6 @@ const Root: React.FunctionComponent = () => (
           <Route path={routes.room} component={DetailsPage} />
           {/* <Route exact path={routes.players} component={Players} /> */}
           <Route path={routes.player} component={DetailsPage} />
-
           <Route />
         </Switch>
       </MainTemplate>

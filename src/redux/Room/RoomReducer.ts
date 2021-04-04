@@ -23,11 +23,15 @@ export const roomReducer = (
 ): RoomState => {
   switch (action.type) {
     case FETCH_ROOMS_REQUEST:
-      return { loading: true, rooms: [], error: '' };
+      return { loading: true, rooms: state.rooms, error: '' };
     case FETCH_ROOMS_SUCCESS:
-      return { loading: false, rooms: action.rooms, error: '' };
+      return {
+        loading: false,
+        rooms: action.rooms,
+        error: '',
+      };
     case FETCH_ROOMS_FAILURE:
-      return { loading: false, rooms: [], error: action.error };
+      return { loading: false, rooms: state.rooms, error: action.error };
 
     default:
       return state;

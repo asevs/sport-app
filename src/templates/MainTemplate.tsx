@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../theme/MainTheme';
 import GlobalStyle from '../theme/GlobalStyle';
 
-const MaintTemplate: React.FunctionComponent = ({ children }) => (
+const MaintTemplate: React.FC = ({ children }) => (
   <>
     <ThemeProvider theme={theme}>{children}</ThemeProvider>
     <GlobalStyle />

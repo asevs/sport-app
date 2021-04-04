@@ -1,5 +1,5 @@
-import { FunctionComponent } from 'react';
+import React from 'react';
 
-const RegisterPage: FunctionComponent = () => <>RegisterPage</>;
+const RegisterPage: React.FC = () => <>RegisterPage</>;
 
 export default RegisterPage;

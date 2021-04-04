@@ -1,7 +1,5 @@
-import * as React from 'react';
+import React from 'react';
 
-const LoginPage: React.FunctionComponent = () => <>LoginPage</>;
+const LoginPage: React.FC = () => <>LoginPage</>;
 
 export default LoginPage;
-
-

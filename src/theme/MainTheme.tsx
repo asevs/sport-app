@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/prefer-default-export
 export const theme = {
   yellow: 'hsl(49, 100%, 58%)',
-  blue: 'hsl(196, 83%, 75%)',
+  blue: 'hsl(223.6,98.8%,66.7%)',
   green: 'hsl(106, 47%, 64%)',
   grey100: 'hsl(0, 0%, 96%)',
   grey200: 'hsl(0, 0%, 90%)',

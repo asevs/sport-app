@@ -1,10 +1,17 @@
 import * as React from 'react';
-
-interface RoomsTemplateProps {
+import styled from 'styled-components';
+import Sidebar from '../components/organisms/Navbar/Navbar';
+interface IUserPageTemplateProps {
   children: React.ReactNode;
 }
-const UserPageTemplate: React.FC<RoomsTemplateProps> = ({ children }) => (
-  <>{children}</>
+
+const StyledWrapper = styled.div``;
+
+const UserPageTemplate: React.FC<IUserPageTemplateProps> = ({ children }) => (
+  <StyledWrapper>
+    <Sidebar />
+    {children}
+  </StyledWrapper>
 );
 
 export default UserPageTemplate;
