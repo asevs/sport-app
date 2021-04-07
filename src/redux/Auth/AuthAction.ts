@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-
+import API from '../../utils/API';
 import { AppActions } from '../models/actions';
 
 import {
@@ -7,17 +7,13 @@ import {
   AUTHORIZATION_USER_SUCCESS,
   AUTHORIZATION_USER_FAILURE,
 } from './models/actions';
-import { Auth } from './models/Auth';
+import { Auth, LoginCredentials } from './models/Auth';
 
 const requestAuth = (): AppActions => ({
   type: AUTHORIZATION_USER_REQUEST,
   loading: true,
   auth: {
-    userId: 1,
-    login: '',
-    password: '',
     token: '',
-    photo: '',
     isLoggedIn: false,
   },
   error: '',
@@ -32,22 +28,35 @@ const invalidateAuth = (): AppActions => ({
   type: AUTHORIZATION_USER_FAILURE,
   loading: false,
   auth: {
-    userId: 1,
-    login: '',
-    password: '',
     token: '',
-    photo: '',
     isLoggedIn: false,
   },
   error: 'Unable to authorization',
 });
 
-export const boundRequestAuth = () => {
+export const loginUser = (loginCredentials: LoginCredentials) => {
   return (dispatch: Dispatch<AppActions>) => {
     dispatch(requestAuth());
-    return fetch(`https://jsonplaceholder.typicode.com/todos?_limit=5`)
-      .then((res) => res.json())
-      .then((json) => dispatch(receiveAuth(json)))
-      .catch((err) => dispatch(invalidateAuth()));
+    return (
+      API.post('/login', loginCredentials)
+        .then((res) => {
+          const token = `Bearer ${res.headers.authorization}`;
+          localStorage.setItem('token', token);
+          API.defaults.headers.common['Authorization'] = token;
+          dispatch;
+          console.log(res.headers.authorization);
+        })
+        // .then((res) => {
+        //   dispatch(receiveAuth(res.data))
+        // })
+        .catch((err) => {
+          dispatch(invalidateAuth());
+        })
+    );
   };
 };
+
+// fetch(`https://jsonplaceholder.typicode.com/todos?_limit=5`)
+//   .then((res) => res.json())
+//   .then((json) => dispatch(receiveAuth(json)))
+//   .catch((err) => dispatch(invalidateAuth()));

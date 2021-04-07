@@ -14,11 +14,7 @@ interface AuthState {
 const defaultState: AuthState = {
   loading: false,
   auth: {
-    userId: 1,
-    login: 'unloggedUser',
-    password: '',
     token: '',
-    photo: '',
     isLoggedIn: false,
   },
   error: '',
@@ -33,26 +29,18 @@ export const authReducer = (
       return {
         loading: true,
         auth: {
-          userId: 1,
-          login: 'unloggedUser',
-          password: '',
           token: '',
-          photo: '',
           isLoggedIn: false,
         },
         error: '',
       };
     case AUTHORIZATION_USER_SUCCESS:
-      return { loading: true, auth: action.auth, error: '' };
+      return { loading: false, auth: action.auth, error: '' };
     case AUTHORIZATION_USER_FAILURE:
       return {
-        loading: true,
+        loading: false,
         auth: {
-          userId: 1,
-          login: 'unloggedUser',
-          password: '',
           token: '',
-          photo: '',
           isLoggedIn: false,
         },
         error: '',

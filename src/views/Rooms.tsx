@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import RoomsTemplate from '../templates/RoomsTemplate';
 import { AppState } from '../redux/rootStore';
 import { ThunkDispatch } from 'redux-thunk';
-import { boundRequestRooms } from '../redux/Room/RoomAction';
 import { AppActions } from '../redux/models/actions';
-import { boundRequestAuth } from '../redux/Auth/AuthAction';
+import { loginUser } from '../redux/Auth/AuthAction';
 
 type RoomDispatch = ThunkDispatch<
   AppState,
@@ -26,13 +25,6 @@ const Rooms: React.FC = () => {
 
   const dispatch: RoomDispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(boundRequestRooms());
-  }, []);
-  useEffect(() => {
-    dispatch(boundRequestRooms());
-  }, []);
-
   const auth = useSelector<AppState, AppState['authReducer']>(
     (state: AppState) => state.authReducer
   );
@@ -40,10 +32,10 @@ const Rooms: React.FC = () => {
   const dispatchauth: AuthDispatch = useDispatch();
 
   useEffect(() => {
-    dispatchauth(boundRequestAuth());
+    dispatchauth(loginUser({ username: 'test', password: 'test' }));
   }, []);
 
-  return <RoomsTemplate>Rooms{console.log(rooms.rooms)}</RoomsTemplate>;
+  return <RoomsTemplate>Rooms</RoomsTemplate>;
 };
 
 export default Rooms;

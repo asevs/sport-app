@@ -13,7 +13,7 @@ interface RoomState {
 }
 const defaultState: RoomState = {
   loading: false,
-  rooms: [{ id: 1, title: 'string', isOpen: true }],
+  rooms: [],
   error: '',
 };
 
@@ -27,7 +27,7 @@ export const roomReducer = (
     case FETCH_ROOMS_SUCCESS:
       return {
         loading: false,
-        rooms: action.rooms,
+        rooms: [...state.rooms, ...action.rooms],
         error: '',
       };
     case FETCH_ROOMS_FAILURE:
