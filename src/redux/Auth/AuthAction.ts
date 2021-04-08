@@ -7,7 +7,7 @@ import {
   AUTHORIZATION_USER_SUCCESS,
   AUTHORIZATION_USER_FAILURE,
 } from './models/actions';
-import { Auth, LoginCredentials } from './models/Auth';
+import { LoginCredentials } from './models/Auth';
 
 const requestAuth = (): AppActions => ({
   type: AUTHORIZATION_USER_REQUEST,
@@ -18,10 +18,13 @@ const requestAuth = (): AppActions => ({
   },
   error: '',
 });
-const receiveAuth = (auth: Auth): AppActions => ({
+const receiveAuth = (): AppActions => ({
   type: AUTHORIZATION_USER_SUCCESS,
   loading: false,
-  auth: auth,
+  auth: {
+    token: 'saved token',
+    isLoggedIn: true,
+  },
   error: '',
 });
 const invalidateAuth = (): AppActions => ({
@@ -37,26 +40,17 @@ const invalidateAuth = (): AppActions => ({
 export const loginUser = (loginCredentials: LoginCredentials) => {
   return (dispatch: Dispatch<AppActions>) => {
     dispatch(requestAuth());
-    return (
-      API.post('/login', loginCredentials)
-        .then((res) => {
-          const token = `Bearer ${res.headers.authorization}`;
-          localStorage.setItem('token', token);
-          API.defaults.headers.common['Authorization'] = token;
-          dispatch;
-          console.log(res.headers.authorization);
-        })
-        // .then((res) => {
-        //   dispatch(receiveAuth(res.data))
-        // })
-        .catch((err) => {
-          dispatch(invalidateAuth());
-        })
-    );
+    return API.post('/login', loginCredentials)
+      .then((res) => {
+        const token = res.headers.authorization;
+        localStorage.setItem('token', token);
+        API.defaults.headers.common['Authorization'] = token;
+      })
+      .then(() => {
+        dispatch(receiveAuth());
+      })
+      .catch((err) => {
+        dispatch(invalidateAuth());
+      });
   };
 };
-
-// fetch(`https://jsonplaceholder.typicode.com/todos?_limit=5`)
-//   .then((res) => res.json())
-//   .then((json) => dispatch(receiveAuth(json)))
-//   .catch((err) => dispatch(invalidateAuth()));
