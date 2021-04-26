@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import Sidebar from '../components/organisms/Navbar/Navbar';
+import Navbar from '../components/organisms/Navbar/Navbar';
 interface IUserPageTemplateProps {
   children: React.ReactNode;
 }
@@ -9,7 +9,7 @@ const StyledWrapper = styled.div``;
 
 const UserPageTemplate: React.FC<IUserPageTemplateProps> = ({ children }) => (
   <StyledWrapper>
-    <Sidebar />
+    <Navbar />
     {children}
   </StyledWrapper>
 );
