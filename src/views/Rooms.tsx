@@ -12,12 +12,6 @@ type RoomDispatch = ThunkDispatch<
   AppActions
 >;
 
-type AuthDispatch = ThunkDispatch<
-  AppState,
-  AppState['authReducer'],
-  AppActions
->;
-
 const Rooms: React.FC = () => {
   const rooms = useSelector<AppState, AppState['roomReducer']>(
     (state: AppState) => state.roomReducer
@@ -25,15 +19,7 @@ const Rooms: React.FC = () => {
 
   const dispatch: RoomDispatch = useDispatch();
 
-  const auth = useSelector<AppState, AppState['authReducer']>(
-    (state: AppState) => state.authReducer
-  );
-
-  const dispatchauth: AuthDispatch = useDispatch();
-
-  useEffect(() => {
-    dispatchauth(loginUser({ username: 'test', password: 'test' }));
-  }, []);
+  
 
   return <RoomsTemplate>Rooms</RoomsTemplate>;
 };

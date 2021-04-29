@@ -5,7 +5,9 @@ interface IUserPageTemplateProps {
   children: React.ReactNode;
 }
 
-const StyledWrapper = styled.div``;
+const StyledWrapper = styled.div`
+  
+`;
 
 const UserPageTemplate: React.FC<IUserPageTemplateProps> = ({ children }) => (
   <StyledWrapper>
