@@ -49,6 +49,7 @@ export const loginUser = (loginCredentials: LoginCredentials) => {
       .then(() => {
         dispatch(receiveAuth());
       })
+      .then()
       .catch((err) => {
         dispatch(invalidateAuth());
       });

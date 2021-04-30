@@ -1,9 +1,12 @@
-export const routes = {
-  home: '/',
-  rooms: '/rooms',
-  room: '/rooms/details/:id',
-  players: '/players',
-  player: '/players/details/:id',
-  login: '/login',
-  register: '/register',
-};
+export enum AuthRoutes {
+  rooms = '/rooms',
+  room = '/rooms/details/:id',
+  players = '/players',
+  player = '/players/details/:id',
+}
+
+export enum NonAuthRoutes {
+  home = '/',
+  login = '/login',
+  register = '/register',
+}
