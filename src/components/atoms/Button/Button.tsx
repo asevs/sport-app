@@ -1,20 +1,19 @@
 import styled, { css } from 'styled-components';
 
 type Props = {
-  activecolor: string;
-  secondary: boolean;
+  secondary?: boolean;
 };
 
 const Button = styled.button<Props>`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
+  color: white;
   text-decoration: none;
   padding: 0;
-  background-color: ${({ activecolor, theme }) => theme[activecolor]};
+  background-color: ${({ theme }) => theme.blue};
   width: 220px;
-  height: 47px;
+  height: 44px;
   border: none;
   border-radius: 50px;
   font-family: 'Montserrat';
@@ -33,5 +32,3 @@ const Button = styled.button<Props>`
 `;
 
 export default Button;
-
-
