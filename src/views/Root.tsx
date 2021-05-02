@@ -20,10 +20,9 @@ const Root: React.FunctionComponent = () => (
           <Route exact path={NonAuthRoutes.login} component={LoginPage} />
           <Route exact path={NonAuthRoutes.register} component={RegisterPage} />
           <AuthRoute exact path={AuthRoutes.rooms} Component={Rooms} />
-          <AuthRoute path={AuthRoutes.room} Component={DetailsPage} />
+          <AuthRoute exact path={AuthRoutes.room} Component={DetailsPage} />
           {/* <Route exact path={routes.players} component={Players} /> */}
-          <AuthRoute path={AuthRoutes.player} Component={DetailsPage} />
-          <Route />
+          <AuthRoute exact path={AuthRoutes.player} Component={DetailsPage} />
         </Switch>
       </MainTemplate>
     </BrowserRouter>

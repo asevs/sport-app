@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import API from '../../utils/API';
 import { AppActions } from '../models/actions';
+import jwt_decode from 'jwt-decode';
 
 import {
   AUTHORIZATION_USER_REQUEST,
@@ -45,11 +46,12 @@ export const loginUser = (loginCredentials: LoginCredentials) => {
         const token = res.headers.authorization;
         localStorage.setItem('token', token);
         API.defaults.headers.common['Authorization'] = token;
+        const userInfoDecoded = jwt_decode(token);
+        console.log(userInfoDecoded);
       })
       .then(() => {
         dispatch(receiveAuth());
       })
-      .then()
       .catch((err) => {
         dispatch(invalidateAuth());
       });
