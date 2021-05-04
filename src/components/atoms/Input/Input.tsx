@@ -21,11 +21,14 @@ const Input = styled.input<Props>`
     search &&
     css`
       padding: 10px 20px 10px 40px;
-      font-size: ${({ theme }) => theme.fontSize.xs};
+      font-size: ${({ theme }) => theme.fontSize.s};
       background-image: url(${magnifierIcon});
       background-size: 15px;
-      background-position: 15px 50%;
+      background-position: 92% 50%;
       background-repeat: no-repeat;
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      color: white;
     `}
 `;
 

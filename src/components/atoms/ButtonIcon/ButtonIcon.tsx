@@ -11,7 +11,7 @@ const ButtonIcon = styled.button<Props>`
   background-size: 100% 100%;
   border: none;
   background-color: transparent;
-  margin-right: 1.5rem;
+  cursor: pointer;
 `;
 
 export default ButtonIcon;

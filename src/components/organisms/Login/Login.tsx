@@ -11,7 +11,7 @@ import { AppState } from '../../../redux/rootStore';
 import { AppActions } from '../../../redux/models/actions';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../redux/Auth/AuthAction';
-import { NonAuthRoutes } from '../../../routes';
+import { AuthRoutes } from '../../../routes';
 export interface ILoginProps {}
 
 type AuthDispatch = ThunkDispatch<
@@ -73,17 +73,26 @@ const Login: React.FC<ILoginProps> = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [inputEmail, setInputEmail] = useState('');
   const [inputPassword, setInputPassword] = useState('');
-  const dispatchauth: AuthDispatch = useDispatch();
+  const [errorMsg, setErrorMsg] = useState(null);
+  const dispatchAuth: AuthDispatch = useDispatch();
   const history = useHistory();
 
   const LogIn = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    await dispatchauth(loginUser({ username: 'test', password: 'test' }));
-    history.push(NonAuthRoutes.home);
+    try {
+      const resError = await dispatchAuth(
+        loginUser({ username: 'test', password: 'test' })
+      );
+      if (resError) throw 'Nie udało sie zalogować. Spróbój ponownie.';
+      else history.push(AuthRoutes.rooms);
+    } catch (error) {
+      setErrorMsg(error);
+    }
   };
   return (
     <StyledWrapper>
       <Heading big>Zaloguj się</Heading>
+      {errorMsg && <p>{errorMsg}</p>}
       <form onSubmit={LogIn}>
         <InputContainer>
           <StyledInput

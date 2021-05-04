@@ -3,6 +3,9 @@ import {
   AUTHORIZATION_USER_REQUEST,
   AUTHORIZATION_USER_SUCCESS,
   AUTHORIZATION_USER_FAILURE,
+  LOGOUT_USER,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_FAILURE,
 } from './models/actions';
 import { Auth } from './models/Auth';
 
@@ -14,7 +17,6 @@ interface AuthState {
 const defaultState: AuthState = {
   loading: false,
   auth: {
-    token: '',
     isLoggedIn: false,
   },
   error: '',
@@ -29,7 +31,6 @@ export const authReducer = (
       return {
         loading: true,
         auth: {
-          token: '',
           isLoggedIn: false,
         },
         error: '',
@@ -40,8 +41,31 @@ export const authReducer = (
       return {
         loading: false,
         auth: {
-          token: '',
           isLoggedIn: false,
+        },
+        error: '',
+      };
+    case LOGOUT_USER:
+      return {
+        loading: false,
+        auth: {
+          isLoggedIn: true,
+        },
+        error: '',
+      };
+    case LOGOUT_USER_SUCCESS:
+      return {
+        loading: false,
+        auth: {
+          isLoggedIn: false,
+        },
+        error: '',
+      };
+    case LOGOUT_USER_FAILURE:
+      return {
+        loading: false,
+        auth: {
+          isLoggedIn: true,
         },
         error: '',
       };

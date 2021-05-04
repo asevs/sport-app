@@ -20,14 +20,14 @@ const Button = styled.button<Props>`
   font-weight: 600;
   font-size: 16px;
   text-transform: uppercase;
+  cursor: pointer;
 
   ${({ secondary }) =>
     secondary &&
     css`
-      background-color: hsl(0, 0%, 90%);
-      width: 105px;
+      width: 150px;
       height: 30px;
-      font-size: 10px;
+      font-size: 14px;
     `}
 `;
 
